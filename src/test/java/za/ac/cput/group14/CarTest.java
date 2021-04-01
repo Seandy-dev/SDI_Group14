@@ -1,19 +1,17 @@
 package za.ac.cput.group14;
-
+//Devon Sherwyn May 219168296
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
+import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.*;
 
-class CarTest
-{
+class CarTest {
     private Car vehicle1;
     private Car vehicle2;
 
     @BeforeEach
-    void setUp()
-    {
+    void setUp() {
         vehicle1 = new Car();
         vehicle2 = new Car();
     }
@@ -37,23 +35,19 @@ class CarTest
         assertSame(vehicle2, vehicle2);
         fail("this test was deliberately made to fail by student 219168296");
     }
-    @Timeout(3)
+
     @Test
-    void testTimeoutLoop() throws Exception      // Tests timeout after 3 seconds
+    void timeoutExceeded() {
+        assertTimeout(ofMillis(10), () -> {
+            Thread.sleep(100);
+        });
+    }
+}
+    class DisabledTest                              //tests deliberate disabled
     {
-        while (true)
-        {
-            Thread.sleep(1000);
+        @Disabled("Test was disabled by student 219168296.")
+        @Test
+        void TestDisabled() {
+            System.out.println("If i appear in output, that means i was not disabled successfully");
         }
     }
-}
-
-class DisabledTest                              //tests deliberate disabled
-{
-    @Disabled("Test was disabled by student 219168296.")
-    @Test
-    void TestDisabled()
-    {
-        System.out.println("If i appear in output, that means i was not disabled successfully");
-    }
-}
